@@ -1,0 +1,25 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="True">
+    <Style src="/Packages/com.judze.projectanalysis/Editor/UI/ProjectAnalysisWindow.uss"/>
+    <!-- Vienas izmaiņas veidne; priekšskatījuma datus piesaista C#. -->
+    <ui:VisualElement class="fix-preview-card">
+        <ui:Label name="fix-resource" text="Resource name" class="fix-preview-resource"/>
+        <ui:Label name="fix-path" text="Resource path" class="fix-preview-muted fix-preview-wrapped"/>
+        <ui:Label name="fix-rule" text="Rule" class="fix-preview-wrapped fix-preview-spacing"/>
+        <ui:Label name="fix-risk" text="Risk" class="fix-preview-muted fix-preview-wrapped"/>
+        <ui:Label name="fix-analysis-target" text="Analysis target" class="fix-preview-muted fix-preview-wrapped"/>
+        <ui:Label name="fix-settings-source" text="Current settings source" class="fix-preview-muted fix-preview-wrapped pa-hidden"/>
+        <ui:Label name="fix-settings-scope" text="Settings scope" class="fix-preview-muted fix-preview-wrapped"/>
+        <ui:Label text="Description" class="fix-preview-heading fix-preview-spacing"/>
+        <ui:Label name="fix-reason" text="Finding description and measurements." class="fix-preview-wrapped"/>
+        <ui:Label text="Recommendation" class="fix-preview-heading fix-preview-spacing"/>
+        <ui:Label name="fix-recommendation" text="Recommendation for this resource." class="fix-preview-wrapped"/>
+        <ui:Label text="Proposed change" class="fix-preview-heading fix-preview-spacing"/>
+        <ui:Label name="fix-change-summary" text="Proposed change summary." class="fix-preview-wrapped"/>
+        <!-- Šeit ievieto visas viena priekšlikuma parametru izmaiņas. -->
+        <ui:VisualElement name="fix-property-changes" class="fix-preview-spacing"/>
+        <ui:Label text="Affected files and meshes" class="fix-preview-heading fix-preview-spacing"/>
+        <ui:Label name="fix-affected" text="Affected resource paths" class="fix-preview-wrapped"/>
+        <ui:Label text="Warnings" class="fix-preview-heading fix-preview-spacing"/>
+        <ui:Label name="fix-consequences" text="Review the possible consequences before confirming." class="fix-preview-wrapped"/>
+    </ui:VisualElement>
+</ui:UXML>

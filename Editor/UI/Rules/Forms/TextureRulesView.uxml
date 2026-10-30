@@ -1,0 +1,143 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <!-- Grupas formas izmanto kopīgo USS; UI Builder izvēlieties Open Instance in Context. -->
+    <ui:VisualElement name="tex001-form" class="rule-form">
+        <ui:VisualElement name="tex001-rule-view" class="rules-pane-content">
+          <ui:VisualElement name="rule-details-header" class="rule-details-header">
+            <ui:VisualElement name="rule-heading" class="rule-heading">
+              <ui:Label name="rule-id" text="TEX001 / Textures" class="rule-id"/>
+              <ui:Label name="rule-name" text="Texture Resolution" class="rule-name"/>
+            </ui:VisualElement>
+            <ui:Toggle name="rule-enabled" text="Enabled" value="true" class="rule-enabled"/>
+          </ui:VisualElement>
+          <ui:Label name="rule-description" text="Reviews the largest imported texture dimension for the selected platform." class="rule-description"/>
+          <ui:VisualElement name="tex001-parameters" class="rule-parameters">
+            <ui:Label name="rule-parameters-title" text="Imported dimension thresholds" class="rules-section-title"/>
+            <ui:VisualElement class="rule-threshold-row rule-threshold-heading">
+              <ui:Label text="Priority" class="rule-threshold-risk"/>
+              <ui:Label text="Threshold (&gt;)" class="rule-threshold-value"/>
+              <ui:Label text="Unit" class="rule-threshold-unit rule-threshold-unit--count"/>
+            </ui:VisualElement>
+            <ui:VisualElement class="rule-threshold-row">
+              <ui:Label text="Medium" class="rule-threshold-risk"/>
+              <ui:LongField name="tex001-threshold" label="" value="4096" tooltip="Review threshold (px)" class="rule-threshold-value"/>
+              <ui:Label text="px" class="rule-threshold-unit rule-threshold-unit--count"/>
+            </ui:VisualElement>
+            <ui:Label name="tex001-threshold-error" class="rule-field-error rule-field-error--threshold pa-hidden"/>
+            <ui:VisualElement class="rule-threshold-row">
+              <ui:Label text="High" class="rule-threshold-risk"/>
+              <ui:LongField name="tex001-high-threshold" label="" value="8192" tooltip="High threshold (px)" class="rule-threshold-value"/>
+              <ui:Label text="px" class="rule-threshold-unit rule-threshold-unit--count"/>
+            </ui:VisualElement>
+            <ui:Label name="tex001-high-threshold-error" class="rule-field-error rule-field-error--threshold pa-hidden"/>
+            <ui:Label name="tex001-metric-hint" text="Metric: max(imported width, imported height)." class="rule-threshold-hint"/>
+          </ui:VisualElement>
+          <ui:VisualElement class="rule-parameter-group">
+            <ui:Label text="Impact" class="rules-section-title"/>
+            <ui:Label name="rule-impact-hint" text="Texture data size and graphics memory (VRAM); visual detail." class="rule-threshold-hint"/>
+            <ui:Label text="Proposed change" class="rules-section-title"/>
+            <ui:Label name="tex001-reduction-hint" text="Propose one size step down from the largest imported dimension: 4096 → 2048, 2048 → 1024." class="rule-threshold-hint"/>
+          </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="tex002-form" class="rule-form rule-form--separated">
+        <ui:VisualElement name="tex002-rule-view" class="rules-pane-content">
+          <ui:VisualElement name="rule-details-header" class="rule-details-header">
+            <ui:VisualElement name="rule-heading" class="rule-heading">
+              <ui:Label name="rule-id" text="TEX002 / Textures" class="rule-id"/>
+              <ui:Label name="rule-name" text="Texture Read/Write" class="rule-name"/>
+            </ui:VisualElement>
+            <ui:Toggle name="rule-enabled" text="Enabled" value="true" class="rule-enabled"/>
+          </ui:VisualElement>
+          <ui:Label name="rule-description" text="Finds textures with Read/Write enabled and shows their CPU-accessible data size, including existing mip levels." class="rule-description"/>
+          <ui:VisualElement name="tex002-parameters" class="rule-parameters">
+            <ui:Label name="rule-parameters-title" text="CPU data priority thresholds" class="rules-section-title"/>
+            <ui:VisualElement class="rule-threshold-row rule-threshold-heading">
+              <ui:Label text="Priority" class="rule-threshold-risk"/>
+              <ui:Label text="Threshold (&gt;)" class="rule-threshold-value"/>
+              <ui:Label text="Unit" class="rule-threshold-unit rule-threshold-unit--count"/>
+            </ui:VisualElement>
+            <ui:VisualElement class="rule-threshold-row">
+              <ui:Label text="Medium" class="rule-threshold-risk"/>
+              <ui:DoubleField name="tex002-threshold" label="" value="8" tooltip="Review threshold (MiB)" class="rule-threshold-value"/>
+              <ui:Label text="MiB" class="rule-threshold-unit rule-threshold-unit--count"/>
+            </ui:VisualElement>
+            <ui:Label name="tex002-threshold-error" class="rule-field-error rule-field-error--threshold pa-hidden"/>
+            <ui:VisualElement class="rule-threshold-row">
+              <ui:Label text="High" class="rule-threshold-risk"/>
+              <ui:DoubleField name="tex002-high-threshold" label="" value="32" tooltip="High threshold (MiB)" class="rule-threshold-value"/>
+              <ui:Label text="MiB" class="rule-threshold-unit rule-threshold-unit--count"/>
+            </ui:VisualElement>
+            <ui:Label name="tex002-high-threshold-error" class="rule-field-error rule-field-error--threshold pa-hidden"/>
+            <ui:Label name="tex002-metric-hint" text="Metric: CPU-accessible texture data size." class="rule-threshold-hint"/>
+          </ui:VisualElement>
+          <ui:VisualElement class="rule-parameter-group">
+            <ui:Label text="Impact" class="rules-section-title"/>
+            <ui:Label name="rule-impact-hint" text="RAM used by the CPU-accessible texture data copy." class="rule-threshold-hint"/>
+            <ui:Label text="Proposed change" class="rules-section-title"/>
+            <ui:Label name="rule-fix-hint" text="Read/Write On → Off. Confirm that CPU pixel access is not needed. Scripts that read or change pixels may depend on this setting." class="rule-threshold-hint"/>
+          </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="tex003-form" class="rule-form rule-form--separated">
+        <ui:VisualElement name="tex003-rule-view" class="rules-pane-content">
+          <ui:VisualElement name="rule-details-header" class="rule-details-header">
+            <ui:VisualElement name="rule-heading" class="rule-heading">
+              <ui:Label name="rule-id" text="TEX003 / Textures" class="rule-id"/>
+              <ui:Label name="rule-name" text="Sprite/UI Mipmaps" class="rule-name"/>
+            </ui:VisualElement>
+            <ui:Toggle name="rule-enabled" text="Enabled" value="true" class="rule-enabled"/>
+          </ui:VisualElement>
+          <ui:Label name="rule-description" text="Reviews Sprite (2D and UI) textures with Generate Mip Maps enabled. Risk: Low." class="rule-description"/>
+          <ui:VisualElement name="tex003-parameters" class="rule-parameters">
+            <ui:Label text="Sprite (2D and UI) + Generate Mip Maps On → Low. No size threshold." class="rule-threshold-hint"/>
+          </ui:VisualElement>
+          <ui:VisualElement class="rule-parameter-group">
+            <ui:Label text="Impact" class="rules-section-title"/>
+            <ui:Label name="rule-impact-hint" text="Texture mip data and visual quality when reducing the image." class="rule-threshold-hint"/>
+            <ui:Label text="Proposed change" class="rules-section-title"/>
+            <ui:Label name="rule-fix-hint" text="Generate Mip Maps On → Off after confirmation. Mipmaps can be useful for sprites in 3D and world-space Canvas UI. Review possible aliasing and shimmering." class="rule-threshold-hint"/>
+          </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="tex004-form" class="rule-form rule-form--separated">
+        <ui:VisualElement name="tex004-rule-view" class="rules-pane-content">
+          <ui:VisualElement name="rule-details-header" class="rule-details-header">
+            <ui:VisualElement name="rule-heading" class="rule-heading">
+              <ui:Label name="rule-id" text="TEX004 / Textures" class="rule-id"/>
+              <ui:Label name="rule-name" text="Texture Mip Streaming" class="rule-name"/>
+            </ui:VisualElement>
+            <ui:Toggle name="rule-enabled" text="Enabled" value="true" class="rule-enabled"/>
+          </ui:VisualElement>
+          <ui:Label name="rule-description" text="Checks texture streaming against the current project Quality Level. Existing mipmaps are required." class="rule-description"/>
+          <ui:VisualElement name="tex004-parameters" class="rule-parameters">
+            <ui:Label name="rule-parameters-title" text="Existing mip data priority thresholds" class="rules-section-title"/>
+            <ui:VisualElement class="rule-threshold-row rule-threshold-heading">
+              <ui:Label text="Priority" class="rule-threshold-risk"/>
+              <ui:Label text="Threshold (&gt;)" class="rule-threshold-value"/>
+              <ui:Label text="Unit" class="rule-threshold-unit rule-threshold-unit--count"/>
+            </ui:VisualElement>
+            <ui:VisualElement class="rule-threshold-row">
+              <ui:Label text="Medium" class="rule-threshold-risk"/>
+              <ui:DoubleField name="tex004-threshold" label="" value="8" tooltip="Review threshold (MiB)" class="rule-threshold-value"/>
+              <ui:Label text="MiB" class="rule-threshold-unit rule-threshold-unit--count"/>
+            </ui:VisualElement>
+            <ui:Label name="tex004-threshold-error" class="rule-field-error rule-field-error--threshold pa-hidden"/>
+            <ui:VisualElement class="rule-threshold-row">
+              <ui:Label text="High" class="rule-threshold-risk"/>
+              <ui:DoubleField name="tex004-high-threshold" label="" value="32" tooltip="High threshold (MiB)" class="rule-threshold-value"/>
+              <ui:Label text="MiB" class="rule-threshold-unit rule-threshold-unit--count"/>
+            </ui:VisualElement>
+            <ui:Label name="tex004-high-threshold-error" class="rule-field-error rule-field-error--threshold pa-hidden"/>
+            <ui:Label name="tex004-metric-hint" text="Metric: data size of all existing mip levels." class="rule-threshold-hint"/>
+            <ui:Label text="Global streaming is read from the current Quality Level only." class="rule-threshold-hint"/>
+            <ui:Label text="Global On + texture Off: offer texture streaming. Global Off: one project configuration finding with related textures. Mipmaps Off: no streaming fix." class="rule-threshold-hint"/>
+          </ui:VisualElement>
+          <ui:VisualElement class="rule-parameter-group">
+            <ui:Label text="Impact" class="rules-section-title"/>
+            <ui:Label name="rule-impact-hint" text="Graphics memory (VRAM), CPU and data loading." class="rule-threshold-hint"/>
+            <ui:Label text="Proposed change" class="rules-section-title"/>
+            <ui:Label name="rule-fix-hint" text="Texture Streaming Mipmaps Off → On for supported textures. This rule does not enable mipmap generation." class="rule-threshold-hint"/>
+          </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

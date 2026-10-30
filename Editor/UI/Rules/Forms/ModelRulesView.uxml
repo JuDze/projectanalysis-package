@@ -1,0 +1,128 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <!-- Grupas formas izmanto kopīgo USS; UI Builder izvēlieties Open Instance in Context. -->
+    <ui:VisualElement name="mod001-form" class="rule-form">
+        <ui:VisualElement name="mod001-rule-view" class="rules-pane-content">
+          <ui:VisualElement name="rule-details-header" class="rule-details-header">
+            <ui:VisualElement name="rule-heading" class="rule-heading">
+              <ui:Label name="rule-id" text="MOD001 / Models" class="rule-id"/>
+              <ui:Label name="rule-name" text="Mesh Vertex Count" class="rule-name"/>
+            </ui:VisualElement>
+            <ui:Toggle name="rule-enabled" text="Enabled" value="true" class="rule-enabled"/>
+          </ui:VisualElement>
+          <ui:Label name="rule-description" text="Checks each unique mesh once, including separate meshes stored in the same model file." class="rule-description"/>
+          <ui:VisualElement name="mod001-parameters" class="rule-parameters">
+            <ui:Label name="rule-parameters-title" text="Vertex count thresholds" class="rules-section-title"/>
+            <ui:VisualElement class="rule-threshold-row rule-threshold-heading">
+              <ui:Label text="Priority" class="rule-threshold-risk"/>
+              <ui:Label text="Threshold (&gt;)" class="rule-threshold-value"/>
+              <ui:Label text="Unit" class="rule-threshold-unit rule-threshold-unit--count"/>
+            </ui:VisualElement>
+            <ui:VisualElement class="rule-threshold-row">
+              <ui:Label text="Medium" class="rule-threshold-risk"/>
+              <ui:LongField name="mod001-threshold" label="" value="10000" tooltip="Review threshold (vertices)" class="rule-threshold-value"/>
+              <ui:Label text="vertices" class="rule-threshold-unit rule-threshold-unit--count"/>
+            </ui:VisualElement>
+            <ui:Label name="mod001-threshold-error" class="rule-field-error rule-field-error--threshold pa-hidden"/>
+            <ui:VisualElement class="rule-threshold-row">
+              <ui:Label text="High" class="rule-threshold-risk"/>
+              <ui:LongField name="mod001-high-threshold" label="" value="40000" tooltip="High threshold (vertices)" class="rule-threshold-value"/>
+              <ui:Label text="vertices" class="rule-threshold-unit rule-threshold-unit--count"/>
+            </ui:VisualElement>
+            <ui:Label name="mod001-high-threshold-error" class="rule-field-error rule-field-error--threshold pa-hidden"/>
+            <ui:Label name="mod001-metric-hint" text="Metric: vertex count of one mesh." class="rule-threshold-hint"/>
+          </ui:VisualElement>
+          <ui:VisualElement class="rule-parameter-group">
+            <ui:Label text="Impact" class="rules-section-title"/>
+            <ui:Label name="rule-impact-hint" text="An indicator of geometry complexity and potential GPU work; not a measured frame cost." class="rule-threshold-hint"/>
+            <ui:Label text="Proposed change" class="rules-section-title"/>
+            <ui:Label name="rule-fix-hint" text="Recommendation only: review detail and simplify the source model where appropriate." class="rule-threshold-hint"/>
+          </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="mod002-form" class="rule-form rule-form--separated">
+        <ui:VisualElement name="mod002-rule-view" class="rules-pane-content">
+          <ui:VisualElement name="rule-details-header" class="rule-details-header">
+            <ui:VisualElement name="rule-heading" class="rule-heading">
+              <ui:Label name="rule-id" text="MOD002 / Models" class="rule-id"/>
+              <ui:Label name="rule-name" text="Mesh Triangle Count" class="rule-name"/>
+            </ui:VisualElement>
+            <ui:Toggle name="rule-enabled" text="Enabled" value="true" class="rule-enabled"/>
+          </ui:VisualElement>
+          <ui:Label name="rule-description" text="Counts triangles in each unique mesh. Generated Mesh LOD levels are evaluated at LOD0." class="rule-description"/>
+          <ui:VisualElement name="mod002-parameters" class="rule-parameters">
+            <ui:Label name="rule-parameters-title" text="Triangle count thresholds" class="rules-section-title"/>
+            <ui:VisualElement class="rule-threshold-row rule-threshold-heading">
+              <ui:Label text="Priority" class="rule-threshold-risk"/>
+              <ui:Label text="Threshold (&gt;)" class="rule-threshold-value"/>
+              <ui:Label text="Unit" class="rule-threshold-unit rule-threshold-unit--count"/>
+            </ui:VisualElement>
+            <ui:VisualElement class="rule-threshold-row">
+              <ui:Label text="Medium" class="rule-threshold-risk"/>
+              <ui:LongField name="mod002-threshold" label="" value="25000" tooltip="Review threshold (triangles)" class="rule-threshold-value"/>
+              <ui:Label text="triangles" class="rule-threshold-unit rule-threshold-unit--count"/>
+            </ui:VisualElement>
+            <ui:Label name="mod002-threshold-error" class="rule-field-error rule-field-error--threshold pa-hidden"/>
+            <ui:VisualElement class="rule-threshold-row">
+              <ui:Label text="High" class="rule-threshold-risk"/>
+              <ui:LongField name="mod002-high-threshold" label="" value="100000" tooltip="High threshold (triangles)" class="rule-threshold-value"/>
+              <ui:Label text="triangles" class="rule-threshold-unit rule-threshold-unit--count"/>
+            </ui:VisualElement>
+            <ui:Label name="mod002-high-threshold-error" class="rule-field-error rule-field-error--threshold pa-hidden"/>
+            <ui:Label name="mod002-metric-hint" text="Metric: sum of triangle index counts divided by three at LOD0." class="rule-threshold-hint"/>
+            <ui:Label text="MOD004 uses both thresholds for LOD review. The fields remain editable while either rule is enabled." class="rule-threshold-hint"/>
+          </ui:VisualElement>
+          <ui:VisualElement class="rule-parameter-group">
+            <ui:Label text="Impact" class="rules-section-title"/>
+            <ui:Label name="rule-impact-hint" text="An indicator of geometry complexity and potential GPU work." class="rule-threshold-hint"/>
+            <ui:Label text="Proposed change" class="rules-section-title"/>
+            <ui:Label name="rule-fix-hint" text="Recommendation only: review mesh complexity. MOD004 separately checks existing LODs before proposing generation." class="rule-threshold-hint"/>
+          </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="mod003-form" class="rule-form rule-form--separated">
+        <ui:VisualElement name="mod003-rule-view" class="rules-pane-content">
+          <ui:VisualElement name="rule-details-header" class="rule-details-header">
+            <ui:VisualElement name="rule-heading" class="rule-heading">
+              <ui:Label name="rule-id" text="MOD003 / Models" class="rule-id"/>
+              <ui:Label name="rule-name" text="Mesh Read/Write" class="rule-name"/>
+            </ui:VisualElement>
+            <ui:Toggle name="rule-enabled" text="Enabled" value="true" class="rule-enabled"/>
+          </ui:VisualElement>
+          <ui:Label name="rule-description" text="Checks whether Read/Write is enabled in the model import settings." class="rule-description"/>
+          <ui:VisualElement name="mod003-parameters" class="rule-parameters">
+            <ui:Label name="rule-parameters-title" text="Check conditions" class="rules-section-title"/>
+            <ui:Label text="Read/Write On: Medium priority; review CPU access. Read/Write Off: no finding." class="rule-threshold-hint"/>
+          </ui:VisualElement>
+          <ui:VisualElement class="rule-parameter-group">
+            <ui:Label text="Impact" class="rules-section-title"/>
+            <ui:Label name="rule-impact-hint" text="RAM used by the CPU-accessible geometry data copy." class="rule-threshold-hint"/>
+            <ui:Label text="Proposed change" class="rules-section-title"/>
+            <ui:Label name="rule-fix-hint" text="Read/Write On → Off after confirming that no mesh in the model file requires CPU access. The shared importer setting affects all meshes and uses of the model." class="rule-threshold-hint"/>
+          </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="mod004-form" class="rule-form rule-form--separated">
+        <ui:VisualElement name="mod004-rule-view" class="rules-pane-content">
+          <ui:VisualElement name="rule-details-header" class="rule-details-header">
+            <ui:VisualElement name="rule-heading" class="rule-heading">
+              <ui:Label name="rule-id" text="MOD004 / Models" class="rule-id"/>
+              <ui:Label name="rule-name" text="Mesh LOD Generation" class="rule-name"/>
+            </ui:VisualElement>
+            <ui:Toggle name="rule-enabled" text="Enabled" value="true" class="rule-enabled"/>
+          </ui:VisualElement>
+          <ui:Label name="rule-description" text="Selects a complex mesh, checks existing LODs and then considers generation." class="rule-description"/>
+          <ui:VisualElement name="mod004-parameters" class="rule-parameters">
+            <ui:Label name="rule-parameters-title" text="LOD review condition" class="rules-section-title"/>
+            <ui:Label name="mod004-selection-threshold" text="Thresholds from MOD002." class="rule-threshold-hint"/>
+            <ui:Label text="Skip generation when additional Mesh LODs or a configured LODGroup already cover the mesh in the inspected model and prefab assets." class="rule-threshold-hint"/>
+            <ui:Label text="Maximum Levels and Discard Odd Levels must allow at least one simplified level: LOD1, or LOD2 when odd levels are discarded. A negative maximum means no limit. If the limits block generation or cannot be read, show a recommendation only." class="rule-threshold-hint"/>
+          </ui:VisualElement>
+          <ui:VisualElement class="rule-parameter-group">
+            <ui:Label text="Impact" class="rules-section-title"/>
+            <ui:Label name="rule-impact-hint" text="Potential GPU geometry reduction; additional LOD index data and possible visual artifacts." class="rule-threshold-hint"/>
+            <ui:Label text="Proposed change" class="rules-section-title"/>
+            <ui:Label name="rule-fix-hint" text="Generate Mesh LODs Off → On only when no existing LOD covers the mesh and generation is supported by the current limits. Generation limits remain unchanged. If generation is already On but no extra levels exist, recommend reviewing the import result." class="rule-threshold-hint"/>
+          </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

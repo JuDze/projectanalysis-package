@@ -1,0 +1,7 @@
+{
+    "name": "Judze.ProjectAnalysis.Editor",
+    "references": [],
+    "includePlatforms": [
+        "Editor"
+    ]
+}

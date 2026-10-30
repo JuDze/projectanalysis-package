@@ -1,0 +1,150 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <!-- Grupas formas izmanto kopīgo USS; UI Builder izvēlieties Open Instance in Context. -->
+    <ui:VisualElement name="aud001-form" class="rule-form">
+        <ui:VisualElement name="aud001-rule-view" class="rules-pane-content">
+          <ui:VisualElement name="rule-details-header" class="rule-details-header">
+            <ui:VisualElement name="rule-heading" class="rule-heading">
+              <ui:Label name="rule-id" text="AUD001 / Audio" class="rule-id"/>
+              <ui:Label name="rule-name" text="Audio Load Type" class="rule-name"/>
+            </ui:VisualElement>
+            <ui:Toggle name="rule-enabled" text="Enabled" value="true" class="rule-enabled"/>
+          </ui:VisualElement>
+          <ui:Label name="rule-description" text="Reviews effective Standalone load settings for Vorbis and ADPCM clips. PCM and Streaming are outside this rule." class="rule-description"/>
+          <ui:VisualElement name="aud001-parameters" class="rule-parameters">
+            <ui:Label name="rule-parameters-title" text="Optimization goal" class="rules-section-title"/>
+            <ui:VisualElement class="rule-option-group">
+              <ui:Label text="Choose one goal" class="rule-option-label"/>
+              <ui:DropdownField name="aud001-optimization-goal" label="" choices="Reduce RAM usage,Reduce playback CPU load" index="0" class="rule-option-field"/>
+            </ui:VisualElement>
+            <ui:Label name="aud001-direction-hint" text="Decompress On Load → Compressed In Memory" class="rule-threshold-hint"/>
+            <ui:Label name="aud001-warning-hint" text="Playback decompression can increase CPU load. Confirm that direct sample access through AudioClip.GetData is not required." class="rule-threshold-hint"/>
+            <ui:Label name="aud001-threshold-hint" text="RAM thresholds from AUD005." class="rule-threshold-hint"/>
+          </ui:VisualElement>
+          <ui:VisualElement class="rule-parameter-group">
+            <ui:Label text="Impact" class="rules-section-title"/>
+            <ui:Label name="rule-impact-hint" text="A trade-off between RAM and playback CPU, with decompression work during playback or loading." class="rule-threshold-hint"/>
+            <ui:Label text="Proposed change" class="rules-section-title"/>
+            <ui:Label name="rule-fix-hint" text="Change only Load Type after preview and explicit confirmation." class="rule-threshold-hint"/>
+          </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="aud002-form" class="rule-form rule-form--separated">
+        <ui:VisualElement name="aud002-rule-view" class="rules-pane-content">
+            <ui:VisualElement name="rule-details-header" class="rule-details-header">
+                <ui:VisualElement name="rule-heading" class="rule-heading">
+                    <ui:Label name="rule-id" text="AUD002 / Audio" class="rule-id"/>
+                    <ui:Label name="rule-name" text="Audio Compression" class="rule-name"/>
+                </ui:VisualElement>
+                <ui:Toggle name="rule-enabled" text="Enabled" value="true" class="rule-enabled"/>
+            </ui:VisualElement>
+            <ui:Label name="rule-description" text="Finds clips imported as PCM in the effective Standalone settings. The user chooses the compressed format." class="rule-description"/>
+            <ui:VisualElement name="aud002-parameters" class="rule-parameters">
+                <ui:Label name="rule-parameters-title" text="Compression choice" class="rules-section-title"/>
+                <ui:VisualElement class="rule-option-group">
+                    <ui:Label text="Target compression format" class="rule-option-label"/>
+                    <ui:DropdownField name="aud002-target-format" label="" choices="Select a format,ADPCM,Vorbis" index="0" class="rule-option-field"/>
+                    <ui:Label text="ADPCM: useful for noisy effects played frequently or in large numbers, such as footsteps, impacts and gunshots. Decoding uses less CPU than Vorbis." class="rule-threshold-hint"/>
+                    <ui:Label text="Vorbis: useful for music and medium-length sound effects when smaller audio data is important. Quality trades data size against audible loss; decoding costs more CPU than ADPCM." class="rule-threshold-hint"/>
+                </ui:VisualElement>
+                <ui:VisualElement name="aud002-vorbis-options" class="rule-option-group pa-hidden">
+                    <ui:Label text="Vorbis quality (0–1)" class="rule-option-label"/>
+                    <ui:Slider name="aud002-vorbis-quality" low-value="0" high-value="1" value="0.75" show-input-field="true" class="rule-option-field"/>
+                    <ui:Label name="aud002-vorbis-quality-error" class="rule-field-error pa-hidden"/>
+                    <ui:Label text="Default quality: 0.75. Listen to the result and adjust as needed. Switching formats preserves your chosen quality. Press Save to store rule settings for this project." class="rule-threshold-hint"/>
+                </ui:VisualElement>
+                <ui:Label name="aud002-format-hint" text="Select ADPCM or Vorbis to review the format options." class="rule-threshold-hint"/>
+                <ui:Label text="Risk: Low." class="rule-threshold-hint"/>
+            </ui:VisualElement>
+            <ui:VisualElement class="rule-parameter-group">
+                <ui:Label text="Impact" class="rules-section-title"/>
+                <ui:Label name="rule-impact-hint" text="Audio data size and quality; CPU and RAM depend on the load type." class="rule-threshold-hint"/>
+                <ui:Label text="Proposed change" class="rules-section-title"/>
+                <ui:Label name="rule-fix-hint" text="Change only the selected compression format and, for Vorbis, quality. Preview quality and decoding risks." class="rule-threshold-hint"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="aud003-form" class="rule-form rule-form--separated">
+        <ui:VisualElement name="aud003-rule-view" class="rules-pane-content">
+          <ui:VisualElement name="rule-details-header" class="rule-details-header">
+            <ui:VisualElement name="rule-heading" class="rule-heading">
+              <ui:Label name="rule-id" text="AUD003 / Audio" class="rule-id"/>
+              <ui:Label name="rule-name" text="Audio Sample Rate" class="rule-name"/>
+            </ui:VisualElement>
+            <ui:Toggle name="rule-enabled" text="Enabled" value="true" class="rule-enabled"/>
+          </ui:VisualElement>
+          <ui:Label name="rule-description" text="Checks whether the imported clip frequency is above the selected limit." class="rule-description"/>
+          <ui:VisualElement name="aud003-parameters" class="rule-parameters">
+            <ui:Label name="rule-parameters-title" text="Frequency thresholds" class="rules-section-title"/>
+            <ui:VisualElement class="rule-option-group">
+              <ui:Label text="Medium threshold (&gt; Hz)" class="rule-option-label"/>
+              <ui:IntegerField name="aud003-maximum-sample-rate" label="" value="48000" tooltip="Find frequencies strictly greater than this value" class="rule-option-field"/>
+              <ui:Label name="aud003-maximum-sample-rate-error" class="rule-field-error pa-hidden"/>
+            </ui:VisualElement>
+            <ui:VisualElement class="rule-option-group">
+              <ui:Label text="High threshold (&gt; Hz)" class="rule-option-label"/>
+              <ui:IntegerField name="aud003-high-threshold" value="96000" class="rule-option-field"/>
+              <ui:Label name="aud003-high-threshold-error" class="rule-field-error pa-hidden"/>
+            </ui:VisualElement>
+            <ui:Label text="Optimize Sample Rate is offered for PCM and ADPCM. Other formats receive a recommendation. Already optimized clips above the threshold also receive a recommendation." class="rule-threshold-hint"/>
+          </ui:VisualElement>
+          <ui:VisualElement class="rule-parameter-group">
+            <ui:Label text="Impact" class="rules-section-title"/>
+            <ui:Label name="rule-impact-hint" text="Audio data size and possible RAM usage; sound quality." class="rule-threshold-hint"/>
+            <ui:Label text="Proposed change" class="rules-section-title"/>
+            <ui:Label name="rule-fix-hint" text="Preserve or Override → Optimize Sample Rate after confirmation. Unity chooses the resulting frequency." class="rule-threshold-hint"/>
+          </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="aud004-form" class="rule-form rule-form--separated">
+        <ui:VisualElement name="aud004-rule-view" class="rules-pane-content">
+          <ui:VisualElement name="rule-details-header" class="rule-details-header">
+            <ui:VisualElement name="rule-heading" class="rule-heading">
+              <ui:Label name="rule-id" text="AUD004 / Audio" class="rule-id"/>
+              <ui:Label name="rule-name" text="Audio Mono Conversion" class="rule-name"/>
+            </ui:VisualElement>
+            <ui:Toggle name="rule-enabled" text="Enabled" value="true" class="rule-enabled"/>
+          </ui:VisualElement>
+          <ui:Label name="rule-description" text="Reviews multichannel clips that are not already forced to mono and are not Ambisonic." class="rule-description"/>
+          <ui:VisualElement name="aud004-parameters" class="rule-parameters">
+            <ui:Label name="rule-parameters-title" text="Check conditions" class="rules-section-title"/>
+            <ui:Label text="Channel count &gt; 1; Force To Mono Off; Ambisonic Off." class="rule-threshold-hint"/>
+            <ui:Label text="Risk: Low." class="rule-threshold-hint"/>
+          </ui:VisualElement>
+          <ui:VisualElement class="rule-parameter-group">
+            <ui:Label text="Impact" class="rules-section-title"/>
+            <ui:Label name="rule-impact-hint" text="Audio data size and possible RAM usage; loss of channel separation." class="rule-threshold-hint"/>
+            <ui:Label text="Proposed change" class="rules-section-title"/>
+            <ui:Label name="rule-fix-hint" text="Force To Mono Off → On only after the user confirms suitability. It changes all uses of the clip across platforms. Preview the channel count and listen to the result." class="rule-threshold-hint"/>
+          </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="aud005-form" class="rule-form rule-form--separated">
+        <ui:VisualElement name="aud005-rule-view" class="rules-pane-content">
+          <ui:VisualElement name="rule-details-header" class="rule-details-header">
+            <ui:VisualElement name="rule-heading" class="rule-heading">
+              <ui:Label name="rule-id" text="AUD005 / Audio" class="rule-id"/>
+              <ui:Label name="rule-name" text="Large Clip Streaming" class="rule-name"/>
+            </ui:VisualElement>
+            <ui:Toggle name="rule-enabled" text="Enabled" value="true" class="rule-enabled"/>
+          </ui:VisualElement>
+          <ui:Label name="rule-description" text="Reviews non-streaming clips whose estimated runtime size exceeds the Medium threshold." class="rule-description"/>
+          <ui:VisualElement name="aud005-parameters" class="rule-parameters">
+            <ui:Label text="Estimated runtime size thresholds (bytes)" class="rules-section-title"/>
+            <ui:Label text="Medium threshold (&gt; bytes)" class="rule-option-label"/>
+            <ui:LongField name="aud005-threshold" value="5242880" class="rule-option-field"/>
+            <ui:Label name="aud005-threshold-error" class="rule-field-error pa-hidden"/>
+            <ui:Label text="High threshold (&gt; bytes)" class="rule-option-label"/>
+            <ui:LongField name="aud005-high-threshold" value="20971520" class="rule-option-field"/>
+            <ui:Label name="aud005-high-threshold-error" class="rule-field-error pa-hidden"/>
+            <ui:Label text="AUD001 also uses these thresholds for its RAM goal, even when AUD005 is disabled." class="rule-threshold-hint"/>
+            <ui:Label text="Defaults: Medium 5 MiB (5,242,880 bytes); High 20 MiB (20,971,520 bytes)." class="rule-threshold-hint"/>
+          </ui:VisualElement>
+          <ui:VisualElement class="rule-parameter-group">
+            <ui:Label text="Impact" class="rules-section-title"/>
+            <ui:Label name="rule-impact-hint" text="RAM, data reading and playback decoding." class="rule-threshold-hint"/>
+            <ui:Label text="Proposed change" class="rules-section-title"/>
+            <ui:Label name="rule-fix-hint" text="Propose Load Type → Streaming after preview and confirmation. Review storage access, decoding load and suitability for playback." class="rule-threshold-hint"/>
+          </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

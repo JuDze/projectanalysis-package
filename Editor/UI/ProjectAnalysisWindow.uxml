@@ -1,0 +1,299 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:Template name="AudioRulesView" src="project://database/Packages/com.judze.projectanalysis/Editor/UI/Rules/Forms/AudioRulesView.uxml?fileID=9197481963319205126&amp;guid=017ba72063bf47d0b6e003184edbf3c1&amp;type=3#AudioRulesView"/>
+    <ui:Template name="ModelRulesView" src="project://database/Packages/com.judze.projectanalysis/Editor/UI/Rules/Forms/ModelRulesView.uxml?fileID=9197481963319205126&amp;guid=87717c91626640c5abfb75c4ada45846&amp;type=3#ModelRulesView"/>
+    <ui:Template name="TextureRulesView" src="project://database/Packages/com.judze.projectanalysis/Editor/UI/Rules/Forms/TextureRulesView.uxml?fileID=9197481963319205126&amp;guid=f4ff99f3eaf842f78c5074ce64431a5c&amp;type=3#TextureRulesView"/>
+    <Style src="project://database/Packages/com.judze.projectanalysis/Editor/UI/ProjectAnalysisWindow.uss?fileID=7433441132597879392&amp;guid=e0b7bcb8d3ff480ab6e237a4f6292e2b&amp;type=3#ProjectAnalysisWindow"/>
+    <ui:VisualElement name="project-analysis-root" class="project-analysis-window">
+        <ui:TabView name="main-tabs" reorderable="false" class="project-analysis-main-tabs">
+            <ui:Tab name="analysis-tab" label="Analysis" class="project-analysis-tab">
+                <ui:VisualElement name="analysis-view" class="analysis-view">
+                    <ui:VisualElement name="analysis-toolbar" class="analysis-toolbar">
+                        <ui:Label name="target-platform-label" text="Platform: Unknown"/>
+                        <ui:VisualElement class="analysis-toolbar-actions">
+                            <ui:Button name="run-analysis-button" text="Run Analysis" enabled="false" tooltip="Start a new analysis and undo period. Earlier fixes remain applied; save a report before starting a new analysis."/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:TwoPaneSplitView name="analysis-split" fixed-pane-index="0" fixed-pane-initial-dimension="230" orientation="Horizontal" class="analysis-split">
+                        <ui:ScrollView name="scope-panel" mode="Vertical" class="analysis-section analysis-scope-panel">
+                            <ui:Label text="Analysis scope" class="analysis-section-heading"/>
+                            <ui:VisualElement name="resource-scope">
+                                <ui:DropdownField name="scope-mode" choices="All project assets,Selected folder" index="0"/>
+                                <ui:Label name="project-scope-hint" text="Scope: Assets and Packages" class="scope-spacing analysis-wrapped-text"/>
+                                <uie:ObjectField name="scope-folder" label="Folder" allow-scene-objects="false" class="scope-spacing pa-hidden"/>
+                                <ui:Button name="remove-scope-button" text="Remove" tooltip="Remove the selected folder from the analysis scope" class="scope-spacing pa-hidden"/>
+                                <ui:Button name="check-scope-button" text="Add" class="scope-spacing"/>
+                                <ui:Label name="scope-status" text="" class="scope-spacing analysis-wrapped-text"/>
+                            </ui:VisualElement>
+                            <ui:Label text="Rule settings" class="analysis-rules-heading"/>
+                            <ui:Button name="configure-rules-button" text="Configure rules"/>
+                            <ui:VisualElement name="analysis-settings-view" class="analysis-settings-view">
+                                <ui:VisualElement name="analysis-platform-group" class="analysis-settings-group">
+                                    <ui:Label name="target-platform-title" text="Target platform" class="analysis-setting-label"/>
+                                    <ui:Label name="target-platform-value" text="Unknown" tooltip="Read from Unity&apos;s active build target. This value is read-only." class="analysis-settings-readonly"/>
+                                </ui:VisualElement>
+                                <ui:VisualElement name="analysis-quality-group" class="analysis-settings-group">
+                                    <ui:Label name="quality-level-title" text="Current Quality Level (Editor)" class="analysis-setting-label"/>
+                                    <ui:Label name="quality-level-value" text="Not loaded" tooltip="Read from the active level in Project Settings &gt; Quality. This value is read-only." class="analysis-settings-readonly"/>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                        </ui:ScrollView>
+                        <ui:TwoPaneSplitView name="results-split" fixed-pane-index="0" fixed-pane-initial-dimension="320" orientation="Vertical" class="analysis-results-split">
+                            <ui:VisualElement name="results-view" class="project-analysis-results">
+                                <ui:VisualElement name="category-filters" class="project-analysis-results__categories">
+                                    <uie:ToolbarToggle name="category-all" text="All" value="true"/>
+                                    <uie:ToolbarToggle name="category-textures" text="Textures"/>
+                                    <uie:ToolbarToggle name="category-models" text="Models"/>
+                                    <uie:ToolbarToggle name="category-audio" text="Audio"/>
+                                </ui:VisualElement>
+                                <ui:VisualElement name="result-filters" class="project-analysis-results__filters">
+                                    <uie:ToolbarSearchField name="result-search" tooltip="Search by resource, path, rule or finding" class="project-analysis-results__search"/>
+                                    <ui:DropdownField name="risk-filter" choices="All risks,Low,Medium,High" index="0" class="project-analysis-results__risk-filter"/>
+                                </ui:VisualElement>
+                                <ui:MultiColumnListView name="results-table" selection-type="Single" fixed-item-height="26" virtualization-method="FixedHeight" horizontal-scrolling="true" show-border="true" reorderable="false" class="project-analysis-results__table">
+                                    <ui:Columns>
+                                        <ui:Column name="selected" title="Select" width="60" min-width="60" stretchable="false" resizable="false" sortable="false" optional="false"/>
+                                        <ui:Column name="risk" title="Risk" width="65" min-width="55" stretchable="false" resizable="true" sortable="false" optional="false"/>
+                                        <ui:Column name="resource" title="Resource" width="150" min-width="55" stretchable="true" resizable="true" sortable="false" optional="false"/>
+                                        <ui:Column name="finding" title="Finding" width="200" min-width="55" stretchable="true" resizable="true" sortable="false" optional="false"/>
+                                        <ui:Column name="action" title="Action" width="72" min-width="72" stretchable="false" resizable="false" sortable="false" optional="false"/>
+                                        <ui:Column name="undo" title="Undo" width="72" min-width="72" stretchable="false" resizable="false" sortable="false" optional="false"/>
+                                    </ui:Columns>
+                                </ui:MultiColumnListView>
+                                <ui:Label name="results-empty-message" text="No results to display." class="project-analysis-results__empty-message"/>
+                                <ui:VisualElement class="project-analysis-results__footer">
+                                    <ui:Label name="results-summary" text="0 of 0 "/>
+                                    <ui:VisualElement class="analysis-fix-actions">
+                                        <ui:Button name="clear-results-button" text="Clear results" tooltip="Clear all current results, including results hidden by filters" enabled="false" class="project-analysis-results__clear-button"/>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                                <ui:Label name="result-fix-selection-summary" text="Selected fixes: 0 · Hidden by filters: 0" class="analysis-selection-summary"/>
+                                <ui:VisualElement class="analysis-fix-actions">
+                                    <ui:Button name="select-all-fixes-button" text="Select all fixes" enabled="false" tooltip="Select all available fixes matching the current filters, including rows outside the scroll viewport. Existing hidden selections are kept." class="analysis-fix-action"/>
+                                    <ui:Button name="clear-fix-selection-button" text="Clear fix selection" enabled="false" tooltip="Clear all checked fixes, including those hidden by filters" class="analysis-fix-action"/>
+                                    <ui:Button name="fix-selected-button" text="Fix selected" enabled="false" tooltip="Review and confirm changes for all checked findings, including those hidden by filters." class="analysis-fix-action"/>
+                                    <ui:Button name="revert-all-fixes-button" text="Revert all fixes" enabled="false" tooltip="Revert all fixes applied since the last manual Run Analysis, including resources hidden by filters." class="analysis-fix-action"/>
+                                    <ui:Button name="create-report-button" text="Create report" enabled="false" tooltip="Create a snapshot of the completed analysis. Active fixes determine the report type automatically." class="analysis-fix-action"/>
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+                            <ui:ScrollView name="details-panel" mode="Vertical" class="analysis-section analysis-details-panel">
+                                <ui:VisualElement name="result-details-content">
+                                    <ui:VisualElement class="analysis-detail-heading">
+                                        <ui:Label text="Result details" class="fix-preview-heading"/>
+                                    </ui:VisualElement>
+                                    <ui:Label name="result-details" text="Select a result to view its details." class="analysis-wrapped-text"/>
+                                </ui:VisualElement>
+                                <ui:VisualElement name="fix-preview-panel" class="pa-hidden">
+                                    <ui:VisualElement class="analysis-detail-heading">
+                                        <ui:Label text="Fix preview" class="fix-preview-heading"/>
+                                        <ui:Button name="close-fix-preview-button" text="Back to result" class="analysis-fix-action"/>
+                                    </ui:VisualElement>
+                                    <ui:Label name="fix-preview-summary" text="Proposals: 0 · Asset files: 0" class="fix-preview-wrapped"/>
+                                    <ui:Label text="Review every proposed change below before confirming." class="fix-preview-muted fix-preview-wrapped fix-preview-spacing"/>
+                                    <ui:VisualElement name="fix-preview-changes" class="fix-preview-spacing"/>
+                                    <ui:VisualElement class="fix-preview-footer">
+                                        <ui:Label name="fix-preview-status" text="Use Fix or Fix selected to apply changes after confirmation." class="fix-preview-muted fix-preview-wrapped"/>
+                                    </ui:VisualElement>
+                                </ui:VisualElement>
+                            </ui:ScrollView>
+                        </ui:TwoPaneSplitView>
+                    </ui:TwoPaneSplitView>
+                    <ui:Label name="analysis-status" text="Ready. Run analysis to collect results." class="analysis-status analysis-wrapped-text"/>
+                    <ui:Label name="analysis-fix-status" text="" style="white-space: normal;"/>
+                </ui:VisualElement>
+            </ui:Tab>
+            <ui:Tab name="reports-tab" label="Reports" class="project-analysis-tab">
+                <ui:VisualElement xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" name="reports-view" class="reports-view">
+                    <ui:VisualElement name="reports-header" class="reports-header">
+                        <ui:VisualElement class="reports-title-row">
+                            <ui:Label text="Reports" class="reports-title"/>
+                        </ui:VisualElement>
+                        <ui:Label text="Review reports created from Analysis." class="reports-subtitle"/>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="reports-filters" class="reports-filters">
+                        <uie:ToolbarSearchField name="reports-search" tooltip="Search by report ID, title or project" class="reports-search"/>
+                        <ui:DropdownField name="reports-type-filter" choices="All types,Analysis,Analysis and fixes" index="0" tooltip="Filter by report type" class="reports-type-filter"/>
+                        <ui:Button name="clear-reports-filters-button" text="Clear filters" tooltip="Reset search and report type without deleting reports" class="reports-button reports-clear-filters"/>
+                    </ui:VisualElement>
+                    <ui:TwoPaneSplitView name="reports-split" orientation="Vertical" fixed-pane-index="0" fixed-pane-initial-dimension="180" class="reports-split">
+                        <ui:VisualElement name="reports-list-panel" class="reports-list-panel">
+                            <ui:MultiColumnListView name="reports-table" selection-type="Single" fixed-item-height="28" virtualization-method="FixedHeight" horizontal-scrolling="true" show-border="true" reorderable="false" class="reports-table">
+                                <ui:Columns>
+                                    <ui:Column name="created" title="Created" width="155" min-width="145"/>
+                                    <ui:Column name="title" title="Report" width="240" min-width="160" stretchable="true"/>
+                                    <ui:Column name="type" title="Type" width="145" min-width="135"/>
+                                    <ui:Column name="resources" title="Resources" width="85" min-width="80"/>
+                                    <ui:Column name="findings" title="Findings" width="80" min-width="75"/>
+                                </ui:Columns>
+                            </ui:MultiColumnListView>
+                            <ui:Label name="reports-empty-message" text="No reports available." class="reports-empty-message pa-hidden"/>
+                            <ui:Label name="reports-list-summary" text="Showing 0 of 0 reports" class="reports-list-summary"/>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="reports-details-panel" class="reports-details-panel">
+                            <ui:Label name="reports-details-placeholder" text="Select a report to view its contents." class="reports-details-placeholder"/>
+                            <ui:TabView name="reports-details-tabs" reorderable="false" class="reports-details-tabs pa-hidden">
+                                <ui:Tab name="reports-summary-tab" label="Summary" class="reports-detail-tab">
+                                    <ui:ScrollView name="reports-summary-scroll" mode="Vertical" class="reports-summary-scroll">
+                                        <ui:Label text="Report details" class="reports-section-title"/>
+                                        <ui:VisualElement class="reports-meta-row">
+                                            <ui:Label text="Report ID" class="reports-meta-key"/>
+                                            <ui:Label name="reports-detail-id" class="reports-meta-value"/>
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="reports-meta-row">
+                                            <ui:Label text="Title" class="reports-meta-key"/>
+                                            <ui:Label name="reports-detail-title" class="reports-meta-value"/>
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="reports-meta-row">
+                                            <ui:Label text="Created" class="reports-meta-key"/>
+                                            <ui:Label name="reports-detail-created" class="reports-meta-value"/>
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="reports-meta-row">
+                                            <ui:Label text="Analysis completed" class="reports-meta-key"/>
+                                            <ui:Label name="reports-detail-analyzed" class="reports-meta-value"/>
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="reports-meta-row">
+                                            <ui:Label text="Project" class="reports-meta-key"/>
+                                            <ui:Label name="reports-detail-project" class="reports-meta-value"/>
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="reports-meta-row">
+                                            <ui:Label text="Type" class="reports-meta-key"/>
+                                            <ui:Label name="reports-detail-type" class="reports-meta-value"/>
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="reports-meta-row">
+                                            <ui:Label text="Target platform" class="reports-meta-key"/>
+                                            <ui:Label name="reports-detail-platform" class="reports-meta-value"/>
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="reports-meta-row">
+                                            <ui:Label text="Quality Level at analysis time" class="reports-meta-key"/>
+                                            <ui:Label name="reports-detail-quality" class="reports-meta-value"/>
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="reports-meta-row">
+                                            <ui:Label text="Analysis scope" class="reports-meta-key"/>
+                                            <ui:Label name="reports-detail-scope" class="reports-meta-value"/>
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="reports-meta-row">
+                                            <ui:Label text="Asset files analyzed" class="reports-meta-key"/>
+                                            <ui:Label name="reports-detail-resources" class="reports-meta-value"/>
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="reports-meta-row">
+                                            <ui:Label text="Enabled rules" class="reports-meta-key"/>
+                                            <ui:Label name="reports-detail-rules" class="reports-meta-value"/>
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="reports-meta-row">
+                                            <ui:Label text="Findings" class="reports-meta-key"/>
+                                            <ui:Label name="reports-detail-findings" class="reports-meta-value"/>
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="reports-meta-row">
+                                            <ui:Label text="By risk" class="reports-meta-key"/>
+                                            <ui:Label name="reports-risk-summary" class="reports-meta-value"/>
+                                        </ui:VisualElement>
+                                        <ui:VisualElement class="reports-meta-row">
+                                            <ui:Label text="By category" class="reports-meta-key"/>
+                                            <ui:Label name="reports-category-summary" class="reports-meta-value"/>
+                                        </ui:VisualElement>
+                                        <ui:Foldout text="Rule settings at analysis time" value="false" class="reports-section-foldout">
+                                            <ui:Label name="reports-settings-snapshot" class="reports-wrapped"/>
+                                        </ui:Foldout>
+                                        <ui:Foldout name="reports-findings-foldout" text="Analysis findings" value="true" class="reports-section-foldout">
+                                            <ui:Label name="reports-no-findings" text="No findings were reported." class="reports-muted reports-wrapped pa-hidden"/>
+                                            <ui:VisualElement name="reports-finding-items"/>
+                                        </ui:Foldout>
+                                        <ui:VisualElement name="reports-fixes-content" class="reports-fixes-content pa-hidden">
+                                            <ui:Label text="Recorded changes" class="reports-section-title reports-section-spacing"/>
+                                            <ui:VisualElement class="reports-meta-row">
+                                                <ui:Label text="Application status" class="reports-meta-key"/>
+                                                <ui:Label name="reports-fixes-status" class="reports-meta-value"/>
+                                            </ui:VisualElement>
+                                            <ui:VisualElement class="reports-meta-row">
+                                                <ui:Label text="Changes completed" class="reports-meta-key"/>
+                                                <ui:Label name="reports-fixes-completed" class="reports-meta-value"/>
+                                            </ui:VisualElement>
+                                            <ui:VisualElement name="reports-change-items"/>
+                                            <ui:Label text="Recheck results by operation" class="reports-section-title reports-section-spacing"/>
+                                            <ui:VisualElement name="reports-recheck-items"/>
+                                        </ui:VisualElement>
+                                    </ui:ScrollView>
+                                </ui:Tab>
+                            </ui:TabView>
+                        </ui:VisualElement>
+                    </ui:TwoPaneSplitView>
+                    <ui:VisualElement name="reports-footer" class="reports-footer">
+                        <ui:Label name="reports-footer-status" text="Select a report to save, send to Web or delete from this list." class="reports-footer-status"/>
+                        <ui:VisualElement class="reports-footer-actions">
+                            <ui:Button name="save-report-button" text="Save Report" enabled="false" tooltip="Save the selected report as a JSON file" class="reports-button"/>
+                            <ui:Button name="delete-report-button" text="Delete Report" enabled="false" tooltip="Delete the selected report from this list after confirmation" class="reports-button"/>
+                            <ui:Button name="send-report-to-server-button" text="Send to Web" enabled="false" tooltip="Send the selected report using the current Web Connection values" class="reports-button"/>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:Tab>
+            <ui:Tab name="rules-settings-tab" label="Rules" class="project-analysis-tab">
+                <ui:VisualElement name="rules-settings-view" class="rules-settings-view">
+                    <ui:VisualElement name="rules-header" class="rules-header">
+                        <ui:Label name="rules-title" text="Rule settings" class="rules-title"/>
+                        <ui:Label name="rules-subtitle" text="13 rules: 4 Textures · 4 Models · 5 Audio. Expand a resource group to review its rules." class="rules-subtitle"/>
+                    </ui:VisualElement>
+                    <ui:ScrollView name="rules-scroll" mode="Vertical" class="rules-scroll">
+                        <ui:Foldout name="rules-textures-group" text="Textures (4)" value="true" class="rule-category">
+                            <ui:Instance template="TextureRulesView" name="textures-rules-form"/>
+                        </ui:Foldout>
+                        <ui:Foldout name="rules-models-group" text="Models (4)" value="false" class="rule-category">
+                            <ui:Instance template="ModelRulesView" name="models-rules-form"/>
+                        </ui:Foldout>
+                        <ui:Foldout name="rules-audio-group" text="Audio (5)" value="false" class="rule-category">
+                            <ui:Instance template="AudioRulesView" name="audio-rules-form"/>
+                        </ui:Foldout>
+                    </ui:ScrollView>
+                    <ui:VisualElement name="rules-footer" class="rules-footer">
+                        <ui:Button name="reset-rules-button" text="Reset to defaults" class="rules-action"/>
+                        <ui:Label name="rules-status" text="No changes" class="rules-status"/>
+                        <ui:Button name="cancel-rules-button" text="Cancel" class="rules-action"/>
+                        <ui:Button name="save-rules-button" text="Save" class="rules-action rules-primary-action"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:Tab>
+            <ui:Tab name="server-settings-tab" label="Web Connection" class="project-analysis-tab">
+                <ui:VisualElement name="server-settings-view" class="server-settings-view">
+                    <ui:VisualElement name="server-settings-header" class="server-settings-header">
+                        <ui:Label name="server-settings-title" text="Web connection settings" class="server-settings-heading"/>
+                        <ui:Label name="server-settings-subtitle" text="Configure the server connection for report uploads." class="server-settings-subtitle"/>
+                    </ui:VisualElement>
+                    <ui:ScrollView name="server-settings-scroll" mode="Vertical" class="server-settings-scroll">
+                        <ui:VisualElement name="server-settings-content" class="server-settings-content">
+                            <ui:VisualElement name="server-address-group" class="server-settings-group">
+                                <ui:Label name="server-url-label" text="Server URL" class="server-settings-label"/>
+                                <ui:TextField name="server-url-field" value="https://unityqawebsystem-production-5r5dcg.laravel.cloud" placeholder-text="https://your-server.example.com" multiline="false" tooltip="Base address of the reporting server" class="server-settings-field"/>
+                            </ui:VisualElement>
+                            <ui:VisualElement name="server-project-group" class="server-settings-group">
+                                <ui:Label name="server-project-uuid-label" text="Web Project UUID" class="server-settings-label"/>
+                                <ui:TextField name="server-project-uuid-field" placeholder-text="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" multiline="false" tooltip="Project UUID generated in the web application" class="server-settings-field"/>
+                            </ui:VisualElement>
+                            <ui:VisualElement name="server-authentication-group" class="server-settings-group">
+                                <ui:Label name="server-authentication-title" text="Authentication" class="server-settings-label"/>
+                                <ui:Label name="server-token-label" text="Access token" class="server-settings-field-label"/>
+                                <ui:VisualElement name="server-token-row" class="server-settings-token-row">
+                                    <ui:TextField name="server-token-field" password="true" multiline="false" tooltip="Access token for the reporting server" class="server-settings-field server-settings-token-field"/>
+                                    <ui:Toggle name="show-server-token-toggle" text="Show token" value="false" class="server-settings-toggle"/>
+                                </ui:VisualElement>
+                                <ui:Label name="server-token-hint" text="Press Save to keep the token for this Unity session." class="server-settings-hint"/>
+                            </ui:VisualElement>
+                            <ui:VisualElement name="server-connection-group" class="server-settings-group">
+                                <ui:Label name="server-connection-title" text="Connection" class="server-settings-label"/>
+                                <ui:VisualElement class="server-settings-connection-row">
+                                    <ui:Label name="server-connection-status" text="Not checked" class="server-settings-connection-status"/>
+                                    <ui:Button name="test-server-connection-button" text="Test connection" enabled="false" tooltip="Verify the token and access to this Web project using the current form values." class="server-settings-test-button"/>
+                                </ui:VisualElement>
+                                <ui:Label name="server-connection-hint" text="Enter a Web Project UUID and Access token, then test the connection." class="server-settings-hint"/>
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:ScrollView>
+                    <ui:VisualElement name="server-settings-footer" class="server-settings-actions">
+                        <ui:Button name="reset-server-settings-button" text="Reset to defaults" enabled="false" tooltip="Restore the default server URL and clear the project UUID and session token in the form; press Save to keep the change."/>
+                        <ui:Label name="server-settings-status" text="No changes" class="server-settings-status"/>
+                        <ui:Button name="cancel-server-settings-button" text="Cancel" enabled="false" tooltip="Discard unsaved changes to the server URL, project UUID and session token."/>
+                        <ui:Button name="save-server-settings-button" text="Save" enabled="false" tooltip="Save the server URL and Web project UUID for this Unity project, and keep the token until Unity exits." class="server-settings-primary"/>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:Tab>
+        </ui:TabView>
+    </ui:VisualElement>
+</ui:UXML>

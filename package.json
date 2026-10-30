@@ -1,0 +1,21 @@
+{
+  "name": "com.judze.projectanalysis",
+  "displayName": "Project Analysis",
+  "version": "0.1.0",
+  "unity": "6000.3",
+  "unityRelease": "10f1",
+  "description": "Unity Editor analysis of textures, models and audio with 13 configurable rules, confirmed importer fixes, current-session Undo, JSON reports and optional web upload.",
+  "dependencies": {
+    "com.unity.modules.unitywebrequest": "1.0.0"
+  },
+  "author": {
+    "name": "Juliāna Dzeidzjule",
+    "email": "j.dzeidzjule@gmail.com"
+  },
+  "documentationUrl": "https://github.com/JuDze/projectanalysis-package/blob/main/Documentation/Project%20Analysis.md",
+  "changelogUrl": "https://github.com/JuDze/projectanalysis-package/blob/main/CHANGELOG.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JuDze/projectanalysis-package.git"
+  }
+}

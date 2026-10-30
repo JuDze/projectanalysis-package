@@ -1,0 +1,1195 @@
+/* Galvenā loga krāsu palete; sākotnējās krāsas ir saglabātas. */
+.project-analysis-window {
+    --pa-background-color: #f1f3f5;
+    --pa-tab-color: #e4e7eb;
+    --pa-selected-tab-color: #d4e6f8;
+    --pa-accent-color: #286ba6;
+    --pa-text-color: #20252b;
+
+    background-color: var(--pa-background-color);
+    flex-grow: 1;
+    min-height: 0;
+}
+
+/* Galveno cilņu izkārtojums un joslas augstums. */
+.project-analysis-window .project-analysis-main-tabs {
+    flex-grow: 1;
+}
+
+.project-analysis-window .project-analysis-main-tabs > .unity-tab-view__content-viewport {
+    background-color: var(--pa-tab-color);
+    height: 36px;
+    min-height: 36px;
+}
+
+.project-analysis-window .project-analysis-tab,
+.project-analysis-window .unity-tab__content-container {
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.project-analysis-window .unity-tab__content-container {
+    background-color: var(--pa-background-color);
+    color: var(--pa-text-color);
+}
+
+/* Cilnes galvene un tās neaktīvais izskats. */
+.project-analysis-window .unity-tab__header {
+    min-width: 100px;
+    padding-left: 36px;
+    padding-right: 36px;
+    background-color: var(--pa-tab-color);
+}
+
+.project-analysis-window .unity-tab__header .unity-tab__header-label {
+    color: var(--pa-text-color);
+}
+
+.project-analysis-window .unity-tab__header .unity-tab__header-underline {
+    height: 2px;
+    background-color: transparent;
+}
+
+/* Unity automātiski piešķir aktīvajai galvenei :checked stāvokli. */
+.project-analysis-window .unity-tab__header:checked {
+    background-color: var(--pa-selected-tab-color);
+}
+
+.project-analysis-window .unity-tab__header:checked .unity-tab__header-label {
+    color: var(--pa-accent-color);
+}
+
+.project-analysis-window .unity-tab__header:checked .unity-tab__header-underline {
+    background-color: var(--pa-accent-color);
+}
+
+/* Platforma un nolasītais kvalitātes līmenis atrodas analīzes kreisajā panelī. */
+.project-analysis-window .analysis-settings-view {
+    flex-shrink: 0;
+    margin-top: 24px;
+    min-width: 0;
+}
+
+.project-analysis-window .analysis-settings-group {
+    margin-bottom: 16px;
+}
+
+.project-analysis-window .analysis-setting-label {
+    white-space: normal;
+    color: #20252b;
+    -unity-font-style: bold;
+    margin-bottom: 6px;
+}
+
+/* No projekta nolasīto platformu un kvalitātes līmeni parāda kā informatīvas vērtības. */
+.project-analysis-window .analysis-settings-readonly {
+    background-color: #e4e7eb;
+    color: #20252b;
+    padding: 8px;
+    white-space: normal;
+}
+
+/* Galveno cilņu saturs aizņem pieejamo augstumu. */
+.project-analysis-window .project-analysis-main-tabs > .unity-tab-view__content-container {
+    flex-grow: 1;
+    min-height: 0;
+}
+
+/* Noteikumu iestatījumu galvene, paneļi un apakšējā josla. */
+.project-analysis-window .rules-settings-view {
+    flex-grow: 1;
+    min-height: 0;
+    flex-direction: column;
+}
+
+.project-analysis-window .rules-header {
+    padding: 16px;
+    flex-shrink: 0;
+}
+
+.project-analysis-window .rules-title {
+    font-size: 18px;
+    -unity-font-style: bold;
+    margin-bottom: 4px;
+}
+
+.project-analysis-window .rules-subtitle {
+    color: #59636e;
+    white-space: normal;
+}
+
+/* Visas grupas izmanto vienu ritināmo apgabalu. */
+.project-analysis-window .rules-scroll {
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.project-analysis-window .rules-scroll > .unity-scroll-view__content-viewport > .unity-scroll-view__content-container {
+    padding: 0 16px 16px 16px;
+}
+
+.project-analysis-window .rules-pane-content {
+    padding: 16px;
+}
+
+.project-analysis-window .rules-section-title {
+    font-size: 14px;
+    -unity-font-style: bold;
+    margin-bottom: 12px;
+    color: #20252b;
+}
+
+/* Izvērš tikai resursu grupas; visi grupas noteikumi ir redzami kopā. */
+.project-analysis-window .rule-category {
+    margin-bottom: 12px;
+    margin-left: 0;
+    flex-shrink: 0;
+}
+
+.project-analysis-window .rule-category > .unity-foldout__toggle {
+    min-height: 36px;
+    margin: 0;
+    padding: 6px 10px;
+    background-color: #e0e5eb;
+    border-bottom-width: 1px;
+    border-bottom-color: #b7c1cc;
+}
+
+.project-analysis-window .rule-category > .unity-foldout__content {
+    margin-left: 0;
+}
+
+.project-analysis-window .rule-category .unity-foldout__text {
+    color: #20252b;
+    font-size: 14px;
+    -unity-font-style: bold;
+}
+
+.project-analysis-window .rule-category .unity-foldout__checkmark {
+    -unity-background-image-tint-color: #59636e;
+}
+
+.project-analysis-window .rule-form {
+    flex-shrink: 0;
+}
+
+/* Četrus pikseļus bieza līnija atdala blakus esošos noteikumus. */
+.project-analysis-window .rule-form--separated {
+    border-top-width: 4px;
+    border-top-color: #aab6c4;
+}
+
+/* Katra noteikuma galvene, apraksts un ieslēgšanas pārslēgs. */
+.project-analysis-window .rule-details-header {
+    flex-direction: row;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.project-analysis-window .rule-heading {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.project-analysis-window .rule-id {
+    font-size: 11px;
+    color: #59636e;
+    margin-bottom: 4px;
+}
+
+.project-analysis-window .rule-name {
+    font-size: 16px;
+    -unity-font-style: bold;
+    white-space: normal;
+}
+
+.project-analysis-window .rule-enabled {
+    flex-shrink: 0;
+    margin-left: 12px;
+}
+
+.project-analysis-window .rule-enabled .unity-toggle__text {
+    color: #20252b;
+}
+
+.project-analysis-window .rule-description {
+    white-space: normal;
+    margin-bottom: 20px;
+}
+
+/* Robežvērtību tabulas kolonnas un skaidrojošie teksti. */
+.project-analysis-window .rule-threshold-row {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.project-analysis-window .rule-threshold-heading {
+    -unity-font-style: bold;
+    color: #59636e;
+}
+
+.project-analysis-window .rule-threshold-risk {
+    width: 90px;
+    flex-shrink: 0;
+}
+
+.project-analysis-window .rule-threshold-value {
+    flex-grow: 1;
+    flex-basis: 0;
+    min-width: 0;
+    margin: 0;
+}
+
+.project-analysis-window .rule-threshold-unit {
+    width: 28px;
+    flex-shrink: 0;
+    margin-left: 8px;
+}
+
+.project-analysis-window .rule-threshold-hint {
+    white-space: normal;
+    color: #59636e;
+    margin-top: 8px;
+}
+
+/* Gaiši ievades lauki saglabā salasāmību arī Unity tumšajā motīvā. */
+.project-analysis-window .rule-threshold-value .unity-base-field__input {
+    background-color: #ffffff;
+    color: #20252b;
+    border-width: 1px;
+    border-color: #adb8c4;
+}
+
+/* Noteikumu papildu parametru grupas un to ievades lauki. */
+.project-analysis-window .rule-parameter-group {
+    margin-top: 16px;
+}
+
+.project-analysis-window .rule-option-label {
+    margin-bottom: 4px;
+    color: #20252b;
+}
+
+.project-analysis-window .rule-option-field {
+    margin: 0;
+    min-height: 24px;
+}
+
+.project-analysis-window .rule-option-field .unity-base-field__input {
+    background-color: #ffffff;
+    color: #20252b;
+    border-width: 1px;
+    border-color: #adb8c4;
+}
+
+/* Nolaižamā saraksta tekstam un bultiņai vajadzīgs kontrasts uz gaišā lauka fona. */
+.project-analysis-window .rule-option-field .unity-base-popup-field__text {
+    color: #20252b;
+}
+
+.project-analysis-window .rule-option-field .unity-base-popup-field__arrow {
+    -unity-background-image-tint-color: #59636e;
+}
+
+/* Skaita mērvienībām vajadzīga platāka kolonna nekā px vai MB. */
+.project-analysis-window .rule-threshold-unit--count {
+    width: 64px;
+}
+
+/* Garas etiķetes saglabā salasāmību arī sašaurinātā panelī. */
+.project-analysis-window .rule-threshold-heading .rule-threshold-value,
+.project-analysis-window .rules-section-title,
+.project-analysis-window .rule-option-label {
+    white-space: normal;
+}
+
+.project-analysis-window .rule-option-group {
+    margin-top: 12px;
+}
+
+/* Iestatījumu kļūdas attēlo ar apmali, skaidrojumu un kļūdu skaitu noteikumu sarakstā. */
+.project-analysis-window .rule-field--invalid .unity-base-field__input {
+    border-color: #b3261e;
+}
+
+.project-analysis-window .rule-field-error {
+    color: #b3261e;
+    white-space: normal;
+    margin-top: 2px;
+    margin-bottom: 8px;
+    flex-shrink: 0;
+}
+
+.project-analysis-window .rule-field-error--threshold {
+    margin-left: 90px;
+}
+
+.project-analysis-window .rule-form--invalid {
+    border-left-width: 3px;
+    border-left-color: #b3261e;
+}
+
+.project-analysis-window .rule-form--invalid .rule-id,
+.project-analysis-window .rule-category--invalid .unity-foldout__text {
+    color: #b3261e;
+}
+
+.project-analysis-window .rules-footer {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 12px;
+    border-top-width: 1px;
+    border-top-color: #ced5dc;
+}
+
+/* Statusa teksts aizņem brīvo vietu, novietojot Cancel un Save pogas labajā pusē. */
+.project-analysis-window .rules-status {
+    flex-grow: 1;
+    margin-left: 12px;
+    color: #59636e;
+}
+
+.project-analysis-window .rules-action {
+    min-width: 90px;
+    height: 28px;
+    margin-right: 8px;
+}
+
+.project-analysis-window .rules-primary-action {
+    background-color: #286ba6;
+    color: #ffffff;
+}
+
+/* Analīzes skata izmēri un atstarpes pārnesti no C# bez vērtību maiņas. */
+.project-analysis-window .analysis-view,
+.project-analysis-window .analysis-split {
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.project-analysis-window .analysis-toolbar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    padding: 8px 12px;
+}
+
+.project-analysis-window .analysis-toolbar-actions {
+    flex-direction: row;
+    flex-shrink: 0;
+}
+
+.project-analysis-window .analysis-toolbar-actions > Button {
+    margin-left: 6px;
+}
+
+.project-analysis-window .analysis-section {
+    min-width: 0;
+    min-height: 0;
+}
+
+.project-analysis-window .analysis-section .unity-scroll-view__content-container {
+    padding: 12px;
+}
+
+.project-analysis-window .analysis-scope-panel {
+    min-width: 180px;
+}
+
+.project-analysis-window .analysis-section-heading {
+    -unity-font-style: bold;
+    margin-bottom: 12px;
+}
+
+.project-analysis-window .analysis-rules-heading {
+    -unity-font-style: bold;
+    margin-top: 24px;
+    margin-bottom: 8px;
+}
+
+.project-analysis-window .analysis-results-split {
+    min-width: 360px;
+    min-height: 0;
+}
+
+.project-analysis-window .analysis-details-panel {
+    min-height: 140px;
+}
+
+.project-analysis-window .analysis-wrapped-text {
+    white-space: normal;
+}
+
+.project-analysis-window .analysis-status {
+    flex-shrink: 0;
+    padding: 6px 12px;
+}
+
+/* Atstarpes resursu atlases panelī. */
+.project-analysis-window .scope-spacing {
+    margin-top: 8px;
+}
+
+/* Redzamības stāvokli pārslēdz C#; UI Builder to var mainīt klašu sarakstā. */
+.project-analysis-window .pa-hidden {
+    display: none;
+}
+
+/* Rezultātu tabulas, filtru un meklēšanas lauka stili. */
+/* Gaiša tabulas galvene. */
+.project-analysis-results .unity-multi-column-header,
+.project-analysis-results .unity-multi-column-header__column-container,
+.project-analysis-results .unity-multi-column-header__column,
+.reports-view .unity-multi-column-header,
+.reports-view .unity-multi-column-header__column-container,
+.reports-view .unity-multi-column-header__column {
+    background-color: #e4e7eb;
+    border-color: #bdc7d1;
+    color: #20252b;
+}
+
+.project-analysis-results .unity-multi-column-header__column__title,
+.reports-view .unity-multi-column-header__column__title {
+    color: #20252b;
+    -unity-font-style: bold;
+}
+
+/* Meklēšanas lauka fonam, tekstam un ikonām jābūt salasāmiem arī tumšajā Editor tēmā. */
+.project-analysis-results .unity-toolbar-search-field,
+.reports-view .unity-toolbar-search-field {
+    background-color: #ffffff;
+    background-image: none;
+    border-width: 1px;
+    border-color: #adb8c4;
+    color: #20252b;
+}
+
+.project-analysis-results .unity-search-field-base__text-field,
+.project-analysis-results .unity-search-field-base__text-field__input,
+.reports-view .unity-search-field-base__text-field,
+.reports-view .unity-search-field-base__text-field__input {
+    background-color: transparent;
+    background-image: none;
+    color: #20252b;
+    --unity-cursor-color: #20252b;
+    --unity-selection-color: #b9d5ef;
+}
+
+.project-analysis-results .unity-search-field-base__search-button,
+.project-analysis-results .unity-search-field-base__cancel-button,
+.reports-view .unity-search-field-base__search-button,
+.reports-view .unity-search-field-base__cancel-button {
+    -unity-background-image-tint-color: #4a5c70;
+}
+
+/* Rezultātu skaitītājs un notīrīšanas poga atrodas zem tabulas. */
+.project-analysis-results .project-analysis-results__footer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    margin-top: 6px;
+}
+
+.project-analysis-results .project-analysis-results__clear-button {
+    min-width: 104px;
+    margin-left: 12px;
+    margin-right: 0;
+    background-color: #e4e7eb;
+    border-color: #adb8c4;
+    color: #20252b;
+}
+
+.project-analysis-results .project-analysis-results__clear-button:hover {
+    background-color: #d4e6f8;
+}
+
+.project-analysis-results .project-analysis-results__clear-button:focus {
+    border-color: #286ba6;
+}
+
+/* Tukšam sarakstam poga ir neaktīva. */
+.project-analysis-results .project-analysis-results__clear-button:disabled {
+    background-color: #eceff2;
+    border-color: #cdd5dd;
+    color: #707983;
+}
+
+/* Rezultātu paneļa izkārtojums ir kopīgs logam un UI Builder priekšskatījumam. */
+.project-analysis-results {
+    flex-grow: 1;
+    min-width: 0;
+    min-height: 240px;
+    padding: 8px;
+}
+
+.project-analysis-results .project-analysis-results__categories {
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.project-analysis-results .project-analysis-results__filters {
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    margin-bottom: 8px;
+}
+
+.project-analysis-results .project-analysis-results__search {
+    flex-grow: 1;
+    min-width: 120px;
+    margin-right: 8px;
+}
+
+.project-analysis-results .project-analysis-results__risk-filter {
+    width: 110px;
+}
+
+.project-analysis-results .project-analysis-results__table {
+    flex-grow: 1;
+    min-height: 60px;
+}
+
+/* Rindas darbību pogas; labojumu piemēro tikai pēc apstiprinājuma. */
+.project-analysis-results .analysis-row-fix-button {
+    height: 22px;
+    margin: 2px 6px;
+    padding: 0 8px;
+    -unity-text-align: middle-center;
+}
+
+/* Teksts aizpilda rindas augstumu un ir vienā līmenī ar atzīmi un pogu. */
+.project-analysis-results .project-analysis-results__cell {
+    height: 100%;
+    margin: 0;
+    -unity-text-align: middle-left;
+    padding-left: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Gaiša atlase saglabā salasāmu tekstu arī tumšajā Editor tēmā. */
+#results-table .unity-collection-view__item--selected {
+    background-color: #b9d5ef;
+}
+
+#results-table .project-analysis-results__cell {
+    color: #20252b;
+}
+
+/* Blāvāks teksts apzīmē piemērotu labojumu; Undo noņem šo klasi. */
+#results-table .project-analysis-results__cell.analysis-result-applied {
+    color: #89939e;
+}
+
+#results-table .unity-collection-view__item--selected .project-analysis-results__cell.analysis-result-applied {
+    color: #65798c;
+}
+
+/* Atzīmes fons ir gaišāks, bet pati atzīme paliek skaidri saskatāma. */
+#results-table .analysis-fix-toggle .unity-toggle__checkmark {
+    background-image: none;
+    background-color: #f5f8fc;
+    border-color: #a7bbcf;
+    border-width: 1px;
+    border-radius: 3px;
+    -unity-background-image-tint-color: #345d7e;
+}
+
+#results-table .analysis-fix-toggle:checked .unity-toggle__checkmark,
+#results-table .analysis-fix-toggle .unity-toggle__input:checked .unity-toggle__checkmark {
+    background-color: #dceafb;
+    border-color: #6e99be;
+}
+
+#results-table .analysis-fix-toggle .analysis-fix-check {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -1px;
+    bottom: -1px;
+    margin: 0;
+    padding: 0;
+    color: #345d7e;
+    font-size: 14px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+#results-table .analysis-fix-toggle:checked .analysis-fix-check,
+#results-table .analysis-fix-toggle .unity-toggle__input:checked .analysis-fix-check {
+    display: flex;
+}
+
+#results-table .analysis-fix-toggle:disabled .unity-toggle__checkmark {
+    background-color: #e8edf2;
+    border-color: #c4cdd6;
+}
+
+.project-analysis-results .project-analysis-results__empty-message {
+    white-space: normal;
+    margin-top: 6px;
+}
+
+/* Servera iestatījumu galvene, ritināmais saturs un fiksētā pogu josla. */
+.project-analysis-window .server-settings-view {
+    flex-grow: 1;
+    min-height: 0;
+    flex-direction: column;
+}
+
+.project-analysis-window .server-settings-header {
+    padding: 16px;
+    flex-shrink: 0;
+}
+
+.project-analysis-window .server-settings-heading {
+    font-size: 18px;
+    -unity-font-style: bold;
+    margin-bottom: 4px;
+}
+
+.project-analysis-window .server-settings-subtitle,
+.project-analysis-window .server-settings-hint {
+    color: #59636e;
+    white-space: normal;
+}
+
+.project-analysis-window .server-settings-scroll {
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.project-analysis-window .server-settings-content {
+    padding: 16px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.project-analysis-window .server-settings-group {
+    margin-bottom: 24px;
+}
+
+.project-analysis-window .server-settings-label {
+    color: var(--pa-text-color);
+    -unity-font-style: bold;
+    margin-bottom: 6px;
+}
+
+.project-analysis-window .server-settings-field-label {
+    color: var(--pa-text-color);
+    margin-bottom: 6px;
+}
+
+.project-analysis-window .server-settings-field {
+    margin: 0;
+    min-height: 28px;
+    min-width: 0;
+}
+
+.project-analysis-window .server-settings-field .unity-base-field__input {
+    background-color: #ffffff;
+    color: var(--pa-text-color);
+    border-width: 1px;
+    border-color: #adb8c4;
+}
+
+.project-analysis-window .server-settings-field .unity-base-text-field__input--placeholder {
+    color: #59636e;
+}
+
+.project-analysis-window .server-settings-hint {
+    margin-top: 8px;
+    margin-bottom: 0;
+}
+
+/* Pārslēdzējs maina tikai tokena redzamību, saglabājot ievadīto tekstu. */
+.project-analysis-window .server-settings-token-row,
+.project-analysis-window .server-settings-connection-row {
+    flex-direction: row;
+    align-items: center;
+}
+
+.project-analysis-window .server-settings-token-field {
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+.project-analysis-window .server-settings-toggle {
+    margin: 0;
+    margin-left: 12px;
+    flex-shrink: 0;
+}
+
+.project-analysis-window .server-settings-toggle .unity-toggle__text {
+    color: var(--pa-text-color);
+}
+
+.project-analysis-window .server-settings-connection-status {
+    background-color: var(--pa-tab-color);
+    color: #59636e;
+    padding: 6px 12px;
+}
+
+.project-analysis-window .server-settings-test-button {
+    height: 28px;
+    min-width: 136px;
+    margin-left: 12px;
+}
+
+.project-analysis-window .server-settings-actions {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 12px;
+    border-top-width: 1px;
+    border-top-color: #ced5dc;
+}
+
+.project-analysis-window .server-settings-status {
+    flex-grow: 1;
+    min-width: 0;
+    margin-left: 12px;
+    margin-right: 12px;
+    color: #59636e;
+    white-space: normal;
+}
+
+.project-analysis-window .server-settings-actions > Button {
+    min-width: 90px;
+    height: 28px;
+    margin-right: 8px;
+}
+
+.project-analysis-window .server-settings-primary {
+    background-color: var(--pa-accent-color);
+    color: #ffffff;
+}
+
+/* Labojumu atlase un priekšskatījums atrodas Analysis rezultātu kontekstā. */
+.project-analysis-window .analysis-selection-summary {
+    color: #59636e;
+    margin-top: 6px;
+    white-space: normal;
+    flex-shrink: 0;
+}
+
+.project-analysis-window .analysis-fix-actions,
+.project-analysis-window .analysis-detail-heading {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.project-analysis-window .analysis-detail-heading {
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.project-analysis-window .analysis-fix-action {
+    min-height: 24px;
+    margin: 4px 6px 0 0;
+    background-color: #e4e7eb;
+    border-color: #adb8c4;
+    color: #20252b;
+    white-space: normal;
+}
+
+.project-analysis-window .analysis-fix-action:hover {
+    background-color: #d4e6f8;
+}
+
+.project-analysis-window .analysis-fix-action:disabled {
+    background-color: #eceff2;
+    border-color: #cdd5dd;
+    color: #707983;
+}
+
+.project-analysis-window .analysis-fix-toggle {
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Selektori darbojas arī atsevišķi UI Builder atvērtajā kartītes veidnē. */
+.fix-preview-card {
+    padding: 12px;
+    margin-bottom: 12px;
+    border-width: 1px;
+    border-color: #ced5dc;
+    border-radius: 4px;
+    background-color: #f7f9fb;
+    color: #20252b;
+}
+
+.fix-preview-resource {
+    font-size: 14px;
+    -unity-font-style: bold;
+    white-space: normal;
+}
+
+.fix-preview-heading {
+    -unity-font-style: bold;
+    white-space: normal;
+}
+
+.fix-preview-muted {
+    color: #59636e;
+}
+
+.fix-preview-wrapped {
+    white-space: normal;
+}
+
+.fix-preview-spacing {
+    margin-top: 10px;
+}
+
+.fix-preview-values {
+    padding: 8px;
+    background-color: #e8eef4;
+    border-radius: 3px;
+}
+
+.fix-preview-value-row {
+    flex-direction: row;
+    margin-top: 8px;
+}
+
+.fix-preview-value-column {
+    width: 50%;
+    padding-right: 8px;
+}
+
+.project-analysis-window .fix-preview-footer {
+    border-top-width: 1px;
+    border-top-color: #ced5dc;
+    padding-top: 10px;
+    padding-bottom: 4px;
+}
+
+/* Saglabāto pārskatu cilne un tās filtrējamais saraksts. */
+.project-analysis-window .reports-view {
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.project-analysis-window .reports-header {
+    flex-shrink: 0;
+    padding: 10px 12px 8px 12px;
+}
+
+.project-analysis-window .reports-title-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.project-analysis-window .reports-title {
+    font-size: 18px;
+    -unity-font-style: bold;
+}
+
+.project-analysis-window .reports-preview-label {
+    color: var(--pa-accent-color);
+    background-color: var(--pa-selected-tab-color);
+    padding: 4px 8px;
+    margin-left: 12px;
+}
+
+.project-analysis-window .reports-subtitle {
+    margin-top: 4px;
+    color: #59636e;
+    white-space: normal;
+}
+
+.project-analysis-window .reports-filters {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 0 12px 8px 12px;
+}
+
+.project-analysis-window .reports-search {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    min-width: 100px;
+    margin-right: 8px;
+    height: 24px;
+}
+
+.project-analysis-window .reports-type-filter {
+    width: 155px;
+    flex-shrink: 0;
+    height: 24px;
+    margin: 0 8px 0 0;
+}
+
+.reports-view .reports-type-filter .unity-base-field__input {
+    background-color: #ffffff;
+    color: #20252b;
+    border-width: 1px;
+    border-color: #adb8c4;
+}
+
+.reports-view .reports-type-filter .unity-base-popup-field__text {
+    color: #20252b;
+}
+
+.reports-view .reports-type-filter .unity-base-popup-field__arrow {
+    -unity-background-image-tint-color: #59636e;
+}
+
+.project-analysis-window .reports-split {
+    flex-grow: 1;
+    min-height: 0;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.project-analysis-window .reports-list-panel {
+    min-height: 110px;
+    min-width: 0;
+    padding-bottom: 6px;
+}
+
+.project-analysis-window .reports-table {
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.project-analysis-window .reports-cell {
+    -unity-text-align: middle-left;
+    padding-left: 6px;
+    padding-right: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.project-analysis-window .reports-list-summary,
+.project-analysis-window .reports-empty-message {
+    flex-shrink: 0;
+    margin-top: 4px;
+    color: #59636e;
+    white-space: normal;
+}
+
+/* Saturs ir atsevišķi ritināms, bet darbību josla vienmēr paliek redzama. */
+.project-analysis-window .reports-details-panel {
+    min-height: 90px;
+    min-width: 0;
+    border-top-width: 1px;
+    border-top-color: #bdc7d1;
+}
+
+.project-analysis-window .reports-details-placeholder {
+    margin: 12px 4px;
+    color: #59636e;
+    white-space: normal;
+}
+
+.project-analysis-window .reports-details-tabs,
+.project-analysis-window .reports-detail-tab {
+    flex-grow: 1;
+    min-height: 0;
+    min-width: 0;
+}
+
+.reports-details-tabs > .unity-tab-view__content-viewport {
+    flex-shrink: 0;
+    background-color: var(--pa-tab-color);
+}
+
+.reports-details-tabs .unity-tab__header {
+    min-width: 90px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.project-analysis-window .reports-summary-scroll {
+    flex-grow: 1;
+    min-height: 0;
+    min-width: 0;
+}
+
+.reports-summary-scroll .unity-scroll-view__content-container {
+    padding: 12px 4px;
+}
+
+.reports-view .reports-section-title {
+    -unity-font-style: bold;
+    margin-bottom: 6px;
+}
+
+.reports-view .reports-section-spacing {
+    margin-top: 14px;
+}
+
+.reports-view .reports-meta-row {
+    flex-direction: row;
+    flex-shrink: 0;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.reports-view .reports-meta-key {
+    width: 165px;
+    flex-shrink: 0;
+    padding-right: 12px;
+    -unity-font-style: bold;
+    white-space: normal;
+    color: #20252b;
+}
+
+.reports-view .reports-meta-value {
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 0;
+    white-space: normal;
+    color: #20252b;
+}
+
+.reports-view .reports-muted {
+    color: #59636e;
+}
+
+.reports-view .reports-wrapped {
+    white-space: normal;
+}
+
+.reports-view .reports-section-foldout {
+    flex-shrink: 0;
+    margin: 14px 0 0 0;
+}
+
+.reports-view .reports-card {
+    flex-shrink: 0;
+    margin: 0 0 8px 0;
+    padding: 8px;
+    background-color: #ffffff;
+    border-width: 1px;
+    border-color: #ced5dc;
+    color: #20252b;
+}
+
+.reports-view .reports-card > .unity-foldout__toggle,
+.reports-view .reports-section-foldout > .unity-foldout__toggle {
+    margin: 0 0 6px 0;
+}
+
+.reports-view .reports-card > .unity-foldout__toggle > .unity-toggle__text,
+.reports-view .reports-section-foldout > .unity-foldout__toggle > .unity-toggle__text {
+    color: #20252b;
+    white-space: normal;
+    -unity-font-style: bold;
+}
+
+.reports-view .reports-card > .unity-foldout__toggle .unity-toggle__checkmark,
+.reports-view .reports-section-foldout > .unity-foldout__toggle .unity-toggle__checkmark {
+    -unity-background-image-tint-color: #59636e;
+}
+
+.reports-view .reports-value-row {
+    flex-direction: row;
+    flex-shrink: 0;
+    padding: 6px;
+    border-bottom-width: 1px;
+    border-bottom-color: #d9dfe5;
+}
+
+.reports-view .reports-value-heading {
+    background-color: #e4e7eb;
+    -unity-font-style: bold;
+}
+
+.reports-view .reports-value-cell {
+    width: 33.3333%;
+    padding-right: 8px;
+    white-space: normal;
+    color: #20252b;
+}
+
+.reports-view .reports-fixes-content {
+    flex-shrink: 0;
+}
+
+.reports-view .reports-button {
+    height: 28px;
+    flex-shrink: 0;
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: var(--pa-tab-color);
+    border-color: #adb8c4;
+    color: var(--pa-text-color);
+}
+
+.reports-view .reports-button:hover {
+    background-color: var(--pa-selected-tab-color);
+}
+
+.reports-view .reports-clear-filters {
+    height: 24px;
+    min-width: 84px;
+}
+
+.reports-view .reports-button:disabled {
+    background-color: #eceff2;
+    border-color: #cdd5dd;
+    color: #707983;
+}
+
+.project-analysis-window .reports-footer {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 6px 12px;
+    border-top-width: 1px;
+    border-top-color: #ced5dc;
+}
+
+.reports-view .reports-footer-status {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 300px;
+    min-width: 0;
+    margin: 4px 12px 4px 0;
+    white-space: normal;
+    color: #59636e;
+}
+
+.reports-view .reports-footer-actions {
+    flex-direction: row;
+    flex-shrink: 0;
+    margin: 4px 0;
+}
+
+.reports-view .reports-footer-actions .reports-button {
+    margin-left: 6px;
+}
+
+/* Savienojuma kļūdu un ielādes brīdinājumu tekstam saglabā kontrastu gaišajā formā. */
+.project-analysis-window .server-settings-view HelpBox {
+    background-color: #fff3df;
+    border-color: #d7ad6d;
+    color: #704315;
+    margin-top: 8px;
+}
+.project-analysis-window .server-settings-view HelpBox Label {
+    color: #704315;
+    white-space: normal;
+}

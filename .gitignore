@@ -1,0 +1,16 @@
+.DS_Store
+._*
+.idea/
+.vs/
+.vscode/
+*.csproj
+*.sln
+*.slnx
+*.tgz
+Tests/
+Tests.meta
+Library/
+Temp/
+Logs/
+UserSettings/
+obj/

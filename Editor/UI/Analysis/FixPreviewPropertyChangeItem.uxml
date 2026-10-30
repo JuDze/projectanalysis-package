@@ -1,0 +1,18 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="True">
+    <Style src="/Packages/com.judze.projectanalysis/Editor/UI/ProjectAnalysisWindow.uss"/>
+    <!-- Viena parametra salīdzinājums; vienā kartītē var būt vairākas šādas rindas. -->
+    <ui:VisualElement class="fix-preview-values fix-preview-spacing">
+        <ui:Label text="Property" class="fix-preview-heading"/>
+        <ui:Label name="fix-property" text="Property name" class="fix-preview-wrapped"/>
+        <ui:VisualElement class="fix-preview-value-row">
+            <ui:VisualElement class="fix-preview-value-column">
+                <ui:Label text="Current value at analysis" class="fix-preview-muted fix-preview-wrapped"/>
+                <ui:Label name="fix-current" text="Current" class="fix-preview-wrapped"/>
+            </ui:VisualElement>
+            <ui:VisualElement class="fix-preview-value-column">
+                <ui:Label text="Proposed value" class="fix-preview-muted fix-preview-wrapped"/>
+                <ui:Label name="fix-proposed" text="Proposed" class="fix-preview-wrapped"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
