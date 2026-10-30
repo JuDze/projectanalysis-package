@@ -7,7 +7,7 @@ Unity Editor package for reviewing textures, models and audio using 13 configura
 Open **Window > Package Management > Package Manager**, select **+ > Install package from git URL**, and enter:
 
 ```text
-https://github.com/JuDze/projectanalysis-package.git#v0.1.0
+https://github.com/JuDze/projectanalysis-package.git
 ```
 
 Git must be available to Unity for installation from a Git URL. Alternatively, download or clone this repository, choose **Install package from disk**, and select `package.json`.

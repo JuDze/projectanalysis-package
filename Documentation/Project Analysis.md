@@ -4,7 +4,7 @@ Project Analysis is an Editor package for examining imported textures, models an
 
 ## Setup
 
-In Unity Package Manager, use **Install package from git URL** with `https://github.com/JuDze/projectanalysis-package.git#v0.1.0`. For a local copy, use **Install package from disk** and select this package's `package.json`. Open **Tools > Project Analysis**. The package targets Unity 6000.3.10f1. Unity Test Framework is not required.
+In Unity Package Manager, use **Install package from git URL** with `https://github.com/JuDze/projectanalysis-package.git`. For a local copy, use **Install package from disk** and select this package's `package.json`. Open **Tools > Project Analysis**. The package targets Unity 6000.3.10f1. Unity Test Framework is not required.
 
 ## Workflow
 
